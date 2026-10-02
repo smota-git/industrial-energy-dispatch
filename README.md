@@ -16,15 +16,15 @@ The optimizer minimizes daily operating cost while satisfying heat and electrici
 
 The problem is formulated as a **mixed-integer linear program (MILP)**:
 
-\[
+$$
 \min_x c^T x
-\]
+$$
 
 subject to
 
-\[
+$$
 lb \le Ax \le ub
-\]
+$$
 
 plus variable bounds and binary constraints.
 
@@ -45,17 +45,17 @@ For every hour the model uses:
 
 The constraints are:
 
-\[
+$$
 \sum_s SEG_{t,s}=ON_t
-\]
+$$
 
-\[
+$$
 0 \le ALPHA_{t,s}\le SEG_{t,s}
-\]
+$$
 
-\[
+$$
 F_{CHP,t}=\sum_s \left[f_s SEG_{t,s}+(f_{s+1}-f_s)ALPHA_{t,s}\right]
-\]
+$$
 
 and the same interpolation is used for electrical and thermal output.
 
@@ -65,27 +65,27 @@ This makes fuel, electricity and heat represent one consistent point on the appr
 
 Heat balance:
 
-\[
+$$
 Q_{CHP,t}+\eta_B F_{B,t}=D_{heat,t}
-\]
+$$
 
 Electricity balance:
 
-\[
+$$
 P_{CHP,t}+PV_t+P_{IMP,t}-P_{EXP,t}+P_{DIS,t}-P_{CHG,t}=D_{el,t}
-\]
+$$
 
 Battery state:
 
-\[
+$$
 SOC_t=SOC_{t-1}+\eta_c P_{CHG,t}-P_{DIS,t}/\eta_d
-\]
+$$
 
 CHP ramp:
 
-\[
+$$
 -R \le F_{CHP,t}-F_{CHP,t-1}\le R
-\]
+$$
 
 The model also contains CHP ON/OFF logic, startup cost, device capacities, grid limits and equal initial/final battery SOC.
 
